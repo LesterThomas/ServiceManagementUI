@@ -1,13 +1,14 @@
 {
-  "name": "psadmin",
+  "name": "ServiceManagementUI",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple UI on top of TM Forum Service APIs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Cory House",
-  "license": "ISC",
+  "author": "Lester Thomas",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/LesterThomas/ServiceManagementUI",
   "dependencies": {
     "bootstrap": "^3.3.5",
     "browserify": "^11.0.1",
@@ -16,7 +17,7 @@
     "gulp-connect": "^2.2.0",
     "gulp-eslint": "^0.15.0",
     "gulp-open": "^1.0.0",
-    "jquery": "^2.1.4",
+    "jquery": "^3.3.1",
     "lodash": "^3.10.0",
     "object-assign": "^3.0.0",
     "react": "^0.13.3",
