@@ -18,8 +18,17 @@ var ManageapiLocationPage = React.createClass({
 
 	componentWillMount: function() {
 		this.setState({apiLocation: apiLocationStore.getapiLocation()});
+		apiLocationStore.addChangeListener(this._onChange);
 	},
 
+	//Clean up when this component is unmounted
+	componentWillUnmount: function() {
+		apiLocationStore.removeChangeListener(this._onChange);
+	},
+
+	_onChange: function() {
+		this.setState({ apiLocation: apiLocationStore.getapiLocation()});
+	},
 
 	setapiLocationState: function(event) {
 		this.setState({dirty: true});

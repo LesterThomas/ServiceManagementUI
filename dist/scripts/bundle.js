@@ -46607,26 +46607,26 @@ var ServiceSpecActions = {
 	createServiceSpec: function(serviceSpec) {
 		//var newServiceSpec = ServiceSpecApi.saveServiceSpec(serviceSpec);
 		//Hey dispatcher, go tell all the stores that an serviceSpec was just created.
-		Dispatcher.dispatch({
-			actionType: ActionTypes.CREATE_SERVICESPEC,
-			serviceSpec: newServiceSpec
-		});
+		//Dispatcher.dispatch({
+		//	actionType: ActionTypes.CREATE_SERVICESPEC,
+		//	serviceSpec: newServiceSpec
+		//});
 	},
 
 	updateServiceSpec: function(serviceSpec) {
 		//var updatedServiceSpec = ServiceSpecApi.saveServiceSpec(serviceSpec);
-		Dispatcher.dispatch({
-			actionType: ActionTypes.UPDATE_SERVICESPEC,
-			serviceSpec: updatedServiceSpec
-		});
+		//Dispatcher.dispatch({
+		//	actionType: ActionTypes.UPDATE_SERVICESPEC,
+		//	serviceSpec: updatedServiceSpec
+		//});
 	},
 
 	deleteServiceSpec: function(id) {
 		//ServiceSpecApi.deleteServiceSpec(id);
-		Dispatcher.dispatch({
-			actionType: ActionTypes.DELETE_SERVICESPEC,
-			id: id
-		});
+		//Dispatcher.dispatch({
+	//		actionType: ActionTypes.DELETE_SERVICESPEC,
+		//	id: id
+		//});
 	}
 };
 
@@ -46786,8 +46786,17 @@ var ManageapiLocationPage = React.createClass({displayName: "ManageapiLocationPa
 
 	componentWillMount: function() {
 		this.setState({apiLocation: apiLocationStore.getapiLocation()});
+		apiLocationStore.addChangeListener(this._onChange);
 	},
 
+	//Clean up when this component is unmounted
+	componentWillUnmount: function() {
+		apiLocationStore.removeChangeListener(this._onChange);
+	},
+
+	_onChange: function() {
+		this.setState({ apiLocation: apiLocationStore.getapiLocation()});
+	},
 
 	setapiLocationState: function(event) {
 		this.setState({dirty: true});
