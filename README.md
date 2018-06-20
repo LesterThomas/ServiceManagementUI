@@ -2,9 +2,9 @@
 
 This application allows you to view the Service Catalog, place Service Orders and view the Service Inventory. It sits on top of the TM Forum Open-APIs for Service Catalogue, Service Order and Service Inventory. See:
 
-..* [TMF633_ServiceCatalog](https://github.com/tmforum-apis/TMF633_ServiceCatalog)
-..* [TMF641_ServiceOrder](https://github.com/tmforum-apis/TMF641_ServiceOrder)
-..* [TMF641_ServiceOrder](https://github.com/tmforum-apis/TMF638_ServiceInventory)
+* [TMF633_ServiceCatalog](https://github.com/tmforum-apis/TMF633_ServiceCatalog)
+* [TMF641_ServiceOrder](https://github.com/tmforum-apis/TMF641_ServiceOrder)
+* [TMF641_ServiceOrder](https://github.com/tmforum-apis/TMF638_ServiceInventory)
 
 The application is a simple viewer for demonstration purposes only.
 
