@@ -1,5 +1,5 @@
 {
-  "name": "ServiceManagementUI",
+  "name": "servicemanagementui",
   "version": "1.0.0",
   "description": "Simple UI on top of TM Forum Service APIs",
   "main": "index.js",

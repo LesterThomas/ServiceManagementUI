@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Input = require('../common/textInput');
+var ServiceSpecCharacteristicList = require('./serviceSpecCharacteristicList');
 
 var ServiceSpecForm = React.createClass({
 	propTypes: {
@@ -13,17 +14,28 @@ var ServiceSpecForm = React.createClass({
 
 	render: function() {
 		return (
-			<div>
-				<h1>View Service Specification</h1>
+			<div className=""> 
 				<br />
-				<table className="table">
-					<tbody>
-					<tr><th>ID</th><td>{this.props.serviceSpec.id} </td></tr>
-					<tr><th>Name</th><td>{this.props.serviceSpec.name}</td></tr>
-					<tr><th>Description</th><td>{this.props.serviceSpec.description}</td></tr>
-					</tbody>
-				</table>
-
+				<div className="col-sm-4"> 
+					<div className="panel panel-default ">
+					<div className="panel-heading">Service Specification</div>
+					<div className="panel-body">
+					<table className="table">
+							<tbody>
+							<tr><th>ID</th><td>{this.props.serviceSpec.id} </td></tr>
+							<tr><th>Name</th><td>{this.props.serviceSpec.name}</td></tr>
+							<tr><th>Description</th><td>{this.props.serviceSpec.description}</td></tr>
+							<tr><th>Lifecycle Status</th><td>{this.props.serviceSpec.lifecycleStatus}</td></tr>
+							</tbody>
+						</table>
+					</div>
+					</div>
+				</div>
+				{ this.props.serviceSpec.serviceSpecCharacteristic.length > 0 &&
+				<div className="col-sm-8"> 
+					<ServiceSpecCharacteristicList serviceSpecCharacteristic={this.props.serviceSpec.serviceSpecCharacteristic} />
+				</div>
+				}
 			</div>
 		);
 	}

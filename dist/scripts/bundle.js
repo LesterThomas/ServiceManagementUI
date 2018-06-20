@@ -46723,135 +46723,64 @@ module.exports = require('./lib/React');
 
 var Dispatcher = require('../dispatcher/appDispatcher');
 var ActionTypes = require('../constants/actionTypes');
-var ServiceSpecApi = require('../api/serviceSpecApi');
-
 var InitializeActions = {
 	initApp: function() {
-		Dispatcher.dispatch({
-			actionType: ActionTypes.INITIALIZE,
-			initialData: {
-				serviceSpecs: ServiceSpecApi.getAllServiceSpecs()
-			}
+
+		fetch("http://localhost:8080/tmf-api/serviceCatalogManagement/v2/serviceSpecification") //'http://localhost:9005/serviceSpec.json')
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(myJson) {
+			console.log(myJson);
+			var dispatchData = {
+				actionType: ActionTypes.INITIALIZE,
+				initialData: {
+					serviceSpecs: myJson
+				}
+			};
+			Dispatcher.dispatch(dispatchData);	
 		});
+
 	}
 };
 
 module.exports = InitializeActions;
 
-},{"../api/serviceSpecApi":209,"../constants/actionTypes":221,"../dispatcher/appDispatcher":222}],208:[function(require,module,exports){
+},{"../constants/actionTypes":221,"../dispatcher/appDispatcher":222}],208:[function(require,module,exports){
 "use strict";
 
 var Dispatcher = require('../dispatcher/appDispatcher');
-var ServiceSpecApi = require('../api/serviceSpecApi');
 var ActionTypes = require('../constants/actionTypes');
-
 var ServiceSpecActions = {
 	createServiceSpec: function(serviceSpec) {
-		var newServiceSpec = ServiceSpecApi.saveServiceSpec(serviceSpec);
-
+		//var newServiceSpec = ServiceSpecApi.saveServiceSpec(serviceSpec);
 		//Hey dispatcher, go tell all the stores that an serviceSpec was just created.
-		Dispatcher.dispatch({
+		/*Dispatcher.dispatch({
 			actionType: ActionTypes.CREATE_SERVICESPEC,
 			serviceSpec: newServiceSpec
-		});
+		});*/
 	},
 
 	updateServiceSpec: function(serviceSpec) {
-		var updatedServiceSpec = ServiceSpecApi.saveServiceSpec(serviceSpec);
-
-		Dispatcher.dispatch({
+		//var updatedServiceSpec = ServiceSpecApi.saveServiceSpec(serviceSpec);
+		/*Dispatcher.dispatch({
 			actionType: ActionTypes.UPDATE_SERVICESPEC,
 			serviceSpec: updatedServiceSpec
-		});
+		});*/
 	},
 
 	deleteServiceSpec: function(id) {
-		ServiceSpecApi.deleteServiceSpec(id);
-
-		Dispatcher.dispatch({
+		//ServiceSpecApi.deleteServiceSpec(id);
+		/*Dispatcher.dispatch({
 			actionType: ActionTypes.DELETE_SERVICESPEC,
 			id: id
-		});
+		});*/
 	}
 };
 
 module.exports = ServiceSpecActions;
 
-},{"../api/serviceSpecApi":209,"../constants/actionTypes":221,"../dispatcher/appDispatcher":222}],209:[function(require,module,exports){
-"use strict";
-
-//This file is mocking a web API by hitting hard coded data.
-var serviceSpecs = require('./serviceSpecData').serviceSpecs;
-var _ = require('lodash');
-
-//This would be performed on the server in a real app. Just stubbing in.
-var _generateId = function(serviceSpec) {
-	return serviceSpec.firstName.toLowerCase() + '-' + serviceSpec.lastName.toLowerCase();
-};
-
-var _clone = function(item) {
-	return JSON.parse(JSON.stringify(item)); //return cloned copy so that the item is passed by value instead of by reference
-};
-
-var ServiceSpecApi = {
-	getAllServiceSpecs: function() {
-		return _clone(serviceSpecs); 
-	},
-
-	getServiceSpecById: function(id) {
-		var serviceSpec = _.find(serviceSpecs, {id: id});
-		return _clone(serviceSpec);
-	},
-	
-	saveServiceSpec: function(serviceSpec) {
-		//pretend an ajax call to web api is made here
-		console.log('Pretend this just saved the serviceSpec to the DB via AJAX call...');
-		
-		if (serviceSpec.id) {
-			var existingServiceSpecIndex = _.indexOf(serviceSpecs, _.find(serviceSpecs, {id: serviceSpec.id})); 
-			serviceSpecs.splice(existingServiceSpecIndex, 1, serviceSpec);
-		} else {
-			//Just simulating creation here.
-			//The server would generate ids for new serviceSpecs in a real app.
-			//Cloning so copy returned is passed by value rather than by reference.
-			serviceSpec.id = _generateId(serviceSpec);
-			serviceSpecs.push(serviceSpec);
-		}
-
-		return _clone(serviceSpec);
-	},
-
-	deleteServiceSpec: function(id) {
-		console.log('Pretend this just deleted the serviceSpec from the DB via an AJAX call...');
-		_.remove(serviceSpecs, { id: id});
-	}
-};
-
-module.exports = ServiceSpecApi;
-
-},{"./serviceSpecData":210,"lodash":8}],210:[function(require,module,exports){
-module.exports = {
-	serviceSpecs: 
-	[
-		{
-			id: '2jh3k-kjh345k-34jhk', 
-			name: 'v-fw', 
-			description: 'Virtual Firewall'
-		},	
-		{
-			id: '7jlkj4-kjh345k-12jlk', 
-			name: 'v-IMS', 
-			description: 'Virtual IMS'
-		},	
-		{
-			id: '4jjkh-kjh345k-6jl5kj', 
-			name: 'SD-WAN', 
-			description: 'SD-WAN Connection'
-		}
-	]
-};
-
-},{}],211:[function(require,module,exports){
+},{"../constants/actionTypes":221,"../dispatcher/appDispatcher":222}],209:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46884,7 +46813,7 @@ var About = React.createClass({displayName: "About",
 
 module.exports = About;
 
-},{"react":205}],212:[function(require,module,exports){
+},{"react":205}],210:[function(require,module,exports){
 /*eslint-disable strict */ //Disabling check because we can't run strict mode. Need global vars.
 
 var React = require('react');
@@ -46907,7 +46836,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./common/header":213,"jquery":7,"react":205,"react-router":35}],213:[function(require,module,exports){
+},{"./common/header":211,"jquery":7,"react":205,"react-router":35}],211:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46933,7 +46862,7 @@ var Header = React.createClass({displayName: "Header",
 	}
 });
 module.exports = Header;
-},{"react":205,"react-router":35}],214:[function(require,module,exports){
+},{"react":205,"react-router":35}],212:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46974,7 +46903,7 @@ var Input = React.createClass({displayName: "Input",
 
 module.exports = Input;
 
-},{"react":205}],215:[function(require,module,exports){
+},{"react":205}],213:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46995,7 +46924,7 @@ var Home = React.createClass({displayName: "Home",
 
 module.exports = Home;
 
-},{"react":205,"react-router":35}],216:[function(require,module,exports){
+},{"react":205,"react-router":35}],214:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -47015,7 +46944,7 @@ var NotFoundPage = React.createClass({displayName: "NotFoundPage",
 
 module.exports = NotFoundPage;
 
-},{"react":205,"react-router":35}],217:[function(require,module,exports){
+},{"react":205,"react-router":35}],215:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -47030,13 +46959,7 @@ var ManageServiceSpecPage = React.createClass({displayName: "ManageServiceSpecPa
 		Router.Navigation
 	],
 
-	statics: {
-		willTransitionFrom: function(transition, component) {
-			if (component.state.dirty && !confirm('Leave without saving?')) {
-				transition.abort();
-			}
-		}
-	},
+	statics: {},
 
 	getInitialState: function() {
 		return {
@@ -47064,16 +46987,6 @@ var ManageServiceSpecPage = React.createClass({displayName: "ManageServiceSpecPa
 	serviceSpecFormIsValid: function() {
 		var formIsValid = true;
 		this.state.errors = {}; //clear any previous errors.
-
-		if (this.state.serviceSpec.firstName.length < 3) {
-			this.state.errors.firstName = 'First name must be at least 3 characters.';
-			formIsValid = false;
-		}
-
-		if (this.state.serviceSpec.lastName.length < 3) {
-			this.state.errors.lastName = 'Last name must be at least 3 characters.';
-			formIsValid = false;
-		}
 
 		this.setState({errors: this.state.errors});
 		return formIsValid;
@@ -47110,11 +47023,99 @@ var ManageServiceSpecPage = React.createClass({displayName: "ManageServiceSpecPa
 
 module.exports = ManageServiceSpecPage;
 
-},{"../../actions/serviceSpecActions":208,"../../stores/serviceSpecStore":225,"./serviceSpecForm":218,"react":205,"react-router":35,"toastr":206}],218:[function(require,module,exports){
+},{"../../actions/serviceSpecActions":208,"../../stores/serviceSpecStore":225,"./serviceSpecForm":218,"react":205,"react-router":35,"toastr":206}],216:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
+var toastr = require('toastr');
+var ServiceSpecCharacteristicValueList = require('./serviceSpecCharacteristicValueList');
+
+
+var ServiceSpecCharacteristicList = React.createClass({displayName: "ServiceSpecCharacteristicList",
+	propTypes: {
+		serviceSpecCharacteristic: React.PropTypes.array.isRequired
+	},
+
+
+	render: function() {
+		var createServiceSpecCharacteristicRow = function(serviceSpecCharacteristic) {
+			return (
+				React.createElement("tr", {key: serviceSpecCharacteristic.name}, 
+					React.createElement("td", null, serviceSpecCharacteristic.name), 
+					React.createElement("td", null, serviceSpecCharacteristic.valueType, " "), 
+					React.createElement("td", null, serviceSpecCharacteristic.description, " "), 
+					React.createElement("td", null, 				
+						React.createElement(ServiceSpecCharacteristicValueList, {serviceSpecCharacteristicValue: serviceSpecCharacteristic.serviceSpecCharacteristicValue})
+					)
+				)
+			);
+		};
+
+		return (
+			React.createElement("div", null, 
+				React.createElement("div", {className: "panel panel-default"}, 
+					React.createElement("div", {className: "panel-heading"}, "Service characteristics and values"), 
+					React.createElement("div", {className: "panel-body"}, 
+
+						React.createElement("table", {className: "table"}, 
+							React.createElement("thead", null, 
+								React.createElement("th", null, "Name"), 
+								React.createElement("th", null, "Value Type"), 
+								React.createElement("th", null, "Description"), 
+								React.createElement("th", null, "Value")
+							), 
+							React.createElement("tbody", null, 
+								this.props.serviceSpecCharacteristic.map(createServiceSpecCharacteristicRow, this)
+							)
+						)
+					)
+				)
+			)
+		);
+	}
+});
+
+module.exports = ServiceSpecCharacteristicList;
+
+},{"./serviceSpecCharacteristicValueList":217,"react":205,"react-router":35,"toastr":206}],217:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
+var toastr = require('toastr');
+
+var ServiceSpecCharacteristicValueList = React.createClass({displayName: "ServiceSpecCharacteristicValueList",
+	propTypes: {
+		serviceSpecCharacteristicValue: React.PropTypes.array.isRequired
+	},
+
+
+	render: function() {
+		var createServiceSpecCharacteristicValueRow = function(serviceSpecCharacteristicValue) {
+			return (
+					React.createElement("p", null, "Default value: ", serviceSpecCharacteristicValue.valueTo, " ")
+			);
+		};
+
+		return (
+			React.createElement("div", null, 
+					this.props.serviceSpecCharacteristicValue.map(createServiceSpecCharacteristicValueRow, this)
+			)
+		);
+	}
+});
+
+module.exports = ServiceSpecCharacteristicValueList;
+
+},{"react":205,"react-router":35,"toastr":206}],218:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
 var Input = require('../common/textInput');
+var ServiceSpecCharacteristicList = require('./serviceSpecCharacteristicList');
 
 var ServiceSpecForm = React.createClass({displayName: "ServiceSpecForm",
 	propTypes: {
@@ -47126,17 +47127,28 @@ var ServiceSpecForm = React.createClass({displayName: "ServiceSpecForm",
 
 	render: function() {
 		return (
-			React.createElement("div", null, 
-				React.createElement("h1", null, "View Service Specification"), 
+			React.createElement("div", {className: ""}, 
 				React.createElement("br", null), 
-				React.createElement("table", {className: "table"}, 
-					React.createElement("tbody", null, 
-					React.createElement("tr", null, React.createElement("th", null, "ID"), React.createElement("td", null, this.props.serviceSpec.id, " ")), 
-					React.createElement("tr", null, React.createElement("th", null, "Name"), React.createElement("td", null, this.props.serviceSpec.name)), 
-					React.createElement("tr", null, React.createElement("th", null, "Description"), React.createElement("td", null, this.props.serviceSpec.description))
+				React.createElement("div", {className: "col-sm-4"}, 
+					React.createElement("div", {className: "panel panel-default "}, 
+					React.createElement("div", {className: "panel-heading"}, "Service Specification"), 
+					React.createElement("div", {className: "panel-body"}, 
+					React.createElement("table", {className: "table"}, 
+							React.createElement("tbody", null, 
+							React.createElement("tr", null, React.createElement("th", null, "ID"), React.createElement("td", null, this.props.serviceSpec.id, " ")), 
+							React.createElement("tr", null, React.createElement("th", null, "Name"), React.createElement("td", null, this.props.serviceSpec.name)), 
+							React.createElement("tr", null, React.createElement("th", null, "Description"), React.createElement("td", null, this.props.serviceSpec.description)), 
+							React.createElement("tr", null, React.createElement("th", null, "Lifecycle Status"), React.createElement("td", null, this.props.serviceSpec.lifecycleStatus))
+							)
+						)
 					)
+					)
+				), 
+				 this.props.serviceSpec.serviceSpecCharacteristic.length > 0 &&
+				React.createElement("div", {className: "col-sm-8"}, 
+					React.createElement(ServiceSpecCharacteristicList, {serviceSpecCharacteristic: this.props.serviceSpec.serviceSpecCharacteristic})
 				)
-
+				
 			)
 		);
 	}
@@ -47144,7 +47156,7 @@ var ServiceSpecForm = React.createClass({displayName: "ServiceSpecForm",
 
 module.exports = ServiceSpecForm;
 
-},{"../common/textInput":214,"react":205}],219:[function(require,module,exports){
+},{"../common/textInput":212,"./serviceSpecCharacteristicList":216,"react":205}],219:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -47307,7 +47319,7 @@ var routes = (
 
 module.exports = routes;
 
-},{"./components/about/aboutPage":211,"./components/app":212,"./components/homePage":215,"./components/notFoundPage":216,"./components/serviceSpecs/manageServiceSpecPage":217,"./components/serviceSpecs/serviceSpecPage":220,"react":205,"react-router":35}],225:[function(require,module,exports){
+},{"./components/about/aboutPage":209,"./components/app":210,"./components/homePage":213,"./components/notFoundPage":214,"./components/serviceSpecs/manageServiceSpecPage":215,"./components/serviceSpecs/serviceSpecPage":220,"react":205,"react-router":35}],225:[function(require,module,exports){
 "use strict";
 
 var Dispatcher = require('../dispatcher/appDispatcher');

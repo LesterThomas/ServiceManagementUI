@@ -12,13 +12,7 @@ var ManageServiceSpecPage = React.createClass({
 		Router.Navigation
 	],
 
-	statics: {
-		willTransitionFrom: function(transition, component) {
-			if (component.state.dirty && !confirm('Leave without saving?')) {
-				transition.abort();
-			}
-		}
-	},
+	statics: {},
 
 	getInitialState: function() {
 		return {
@@ -46,16 +40,6 @@ var ManageServiceSpecPage = React.createClass({
 	serviceSpecFormIsValid: function() {
 		var formIsValid = true;
 		this.state.errors = {}; //clear any previous errors.
-
-		if (this.state.serviceSpec.firstName.length < 3) {
-			this.state.errors.firstName = 'First name must be at least 3 characters.';
-			formIsValid = false;
-		}
-
-		if (this.state.serviceSpec.lastName.length < 3) {
-			this.state.errors.lastName = 'Last name must be at least 3 characters.';
-			formIsValid = false;
-		}
 
 		this.setState({errors: this.state.errors});
 		return formIsValid;

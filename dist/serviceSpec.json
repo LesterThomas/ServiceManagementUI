@@ -1,0 +1,259 @@
+[
+	{
+	  "isBundle": false,
+	  "targetServiceSchema": {
+		"@type": "TOSCAService",
+		"@schemaLocation": "@schemaLocation"
+	  },
+	  "lifecycleStatus": "DEPLOYABLE",
+	  "@type": "@type",
+	  "resourceSpecification": [
+		{
+		  "name": "name",
+		  "id": "id",
+		  "href": "href",
+		  "version": "version"
+		}
+	  ],
+	  "description": "12345",
+	  "@baseType": "@baseType",
+	  "lastUpdate": "2000-01-23T04:56:07.000+00:00",
+	  "name": "test network",
+	  "id": "5349c430-8bf7-4033-be37-ef33d0f9823e",
+	  "href": "http://localhost:8080/tmf-api/serviceCatalogManagement/v2/serviceSpecification/5349c430-8bf7-4033-be37-ef33d0f9823e",
+	  "@schemaLocation": "@schemaLocation",
+	  "serviceSpecCharacteristic": [],
+	  "serviceSpecRelationship": []
+	},
+	{
+	  "isBundle": false,
+	  "targetServiceSchema": {
+		"@type": "TOSCAService",
+		"@schemaLocation": "@schemaLocation"
+	  },
+	  "lifecycleStatus": "DEPLOYABLE",
+	  "@type": "@type",
+	  "resourceSpecification": [
+		{
+		  "name": "name",
+		  "id": "id",
+		  "href": "href",
+		  "version": "version"
+		}
+	  ],
+	  "description": "vFW service",
+	  "@baseType": "@baseType",
+	  "lastUpdate": "2000-01-23T04:56:07.000+00:00",
+	  "name": "CloudifyFortigateFirewall",
+	  "id": "2f3feeb0-8e36-46c6-862c-236d9c626356",
+	  "href": "http://localhost:8080/tmf-api/serviceCatalogManagement/v2/serviceSpecification/2f3feeb0-8e36-46c6-862c-236d9c626356",
+	  "@schemaLocation": "@schemaLocation",
+	  "serviceSpecCharacteristic": [
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "description": "The Openstack Image ID of the Fortigate server",
+		  "serviceSpecCharRelationship": [],
+		  "valueType": "string",
+		  "name": "fortigate_image",
+		  "serviceSpecCharacteristicValue": []
+		},
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "description": "An Openstack Flavor ID.",
+		  "serviceSpecCharRelationship": [],
+		  "name": "flavor",
+		  "serviceSpecCharacteristicValue": [
+			{
+			  "isDefault": true,
+			  "valueTo": {
+				"get_secret": "small_image_flavor"
+			  }
+			}
+		  ]
+		},
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "serviceSpecCharRelationship": [],
+		  "valueType": "string",
+		  "name": "public_network",
+		  "serviceSpecCharacteristicValue": [
+			{
+			  "isDefault": true,
+			  "valueTo": {
+				"get_secret": "public_network_name"
+			  }
+			}
+		  ]
+		},
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "serviceSpecCharRelationship": [],
+		  "valueType": "string",
+		  "name": "public_network_subnet",
+		  "serviceSpecCharacteristicValue": [
+			{
+			  "isDefault": true,
+			  "valueTo": {
+				"get_secret": "public_subnet_name"
+			  }
+			}
+		  ]
+		},
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "serviceSpecCharRelationship": [],
+		  "valueType": "string",
+		  "name": "private_network",
+		  "serviceSpecCharacteristicValue": [
+			{
+			  "isDefault": true,
+			  "valueTo": {
+				"get_secret": "private_network_name"
+			  }
+			}
+		  ]
+		},
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "serviceSpecCharRelationship": [],
+		  "valueType": "string",
+		  "name": "private_subnet",
+		  "serviceSpecCharacteristicValue": [
+			{
+			  "isDefault": true,
+			  "valueTo": {
+				"get_secret": "private_subnet_name"
+			  }
+			}
+		  ]
+		},
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "serviceSpecCharRelationship": [],
+		  "valueType": "string",
+		  "name": "application_network",
+		  "serviceSpecCharacteristicValue": [
+			{
+			  "isDefault": true,
+			  "valueTo": {
+				"get_secret": "default_network_name"
+			  }
+			}
+		  ]
+		},
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "serviceSpecCharRelationship": [],
+		  "valueType": "string",
+		  "name": "application_subnet",
+		  "serviceSpecCharacteristicValue": [
+			{
+			  "isDefault": true,
+			  "valueTo": {
+				"get_secret": "default_subnet_name"
+			  }
+			}
+		  ]
+		},
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "description": "The Fortigate server port",
+		  "serviceSpecCharRelationship": [],
+		  "name": "webserver_port",
+		  "serviceSpecCharacteristicValue": [
+			{
+			  "isDefault": true,
+			  "valueTo": 80
+			}
+		  ]
+		}
+	  ],
+	  "serviceSpecRelationship": []
+	},
+	{
+	  "isBundle": false,
+	  "targetServiceSchema": {
+		"@type": "TOSCAService",
+		"@schemaLocation": "@schemaLocation"
+	  },
+	  "lifecycleStatus": "DEPLOYABLE",
+	  "@type": "@type",
+	  "resourceSpecification": [
+		{
+		  "name": "name",
+		  "id": "id",
+		  "href": "href",
+		  "version": "version"
+		}
+	  ],
+	  "description": "vFW service based on 2 VF from 2 VSP",
+	  "@baseType": "@baseType",
+	  "lastUpdate": "2000-01-23T04:56:07.000+00:00",
+	  "name": "vFW-service-2VF-based",
+	  "id": "1e3feeb0-8e36-46c6-862c-236d9c626439",
+	  "href": "http://localhost:8080/tmf-api/serviceCatalogManagement/v2/serviceSpecification/1e3feeb0-8e36-46c6-862c-236d9c626439",
+	  "@schemaLocation": "@schemaLocation",
+	  "serviceSpecCharacteristic": [
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "required": false,
+		  "serviceSpecCharRelationship": [],
+		  "valueType": "string",
+		  "name": "fortigate_image_url",
+		  "serviceSpecCharacteristicValue": []
+		},
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "serviceSpecCharRelationship": [],
+		  "valueType": "string",
+		  "name": "flavor",
+		  "serviceSpecCharacteristicValue": [
+			{
+			  "isDefault": true,
+			  "valueTo": "2z"
+			}
+		  ]
+		},
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "status": "inactive",
+		  "serviceSpecCharRelationship": [],
+		  "valueType": "string",
+		  "name": "external_network_name",
+		  "serviceSpecCharacteristicValue": [
+			{
+			  "isDefault": true,
+			  "valueTo": "GATEWAY_NET"
+			}
+		  ]
+		},
+		{
+		  "@type": "TOSCAServiceCharacteristic",
+		  "@valueSchemaLocation": "@valueSchemaLocation",
+		  "description": "Number of CPUs for the server.",
+		  "serviceSpecCharRelationship": [],
+		  "valueType": "integer",
+		  "name": "cpus",
+		  "serviceSpecCharacteristicValue": [
+			{
+			  "isDefault": true,
+			  "valueTo": 2
+			}
+		  ]
+		}
+	  ],
+	  "serviceSpecRelationship": []
+	}
+  ]
