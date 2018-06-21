@@ -34,8 +34,26 @@ var ServiceSpecStore = assign({}, EventEmitter.prototype, {
 Dispatcher.register(function(action) {
 	switch(action.actionType) {
 		case ActionTypes.INITIALIZE:
-			_serviceSpecs = action.initialData.serviceSpecs;
-			ServiceSpecStore.emitChange();
+			fetch(action.initialData.apiLocation.href) 
+				.then(function(response) {
+					return response.json();
+				})
+				.then(function(myJson) {
+					console.log(myJson);
+					_serviceSpecs = myJson;
+					ServiceSpecStore.emitChange();
+				});
+			break;
+		case ActionTypes.UPDATE_APILOCATION:
+			fetch(action.apiLocation.href) 
+				.then(function(response) {
+					return response.json();
+				})
+				.then(function(myJson) {
+					console.log(myJson);
+					_serviceSpecs = myJson;
+					ServiceSpecStore.emitChange();
+				});
 			break;
 		case ActionTypes.CREATE_SERVICESPEC:
 			_serviceSpecs.push(action.serviceSpec);

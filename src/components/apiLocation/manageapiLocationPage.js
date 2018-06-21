@@ -53,14 +53,10 @@ var ManageapiLocationPage = React.createClass({
 			return;
 		}
 
-		if (this.state.apiLocation.id) {
-			apiLocationAction.updateapiLocation(this.state.apiLocation);
-		} else {
-			apiLocationAction.createapiLocation(this.state.apiLocation);
-		}
+		apiLocationAction.updateapiLocation(this.state.apiLocation);
 		
 		this.setState({dirty: false});
-		toastr.success('apiLocation saved.');
+		toastr.success('API Location saved.');
 	},
 
 	render: function() { 
