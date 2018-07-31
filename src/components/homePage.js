@@ -1,11 +1,8 @@
-"use strict";
+import React, { Component } from 'react';
+import Router, { Link } from 'react-router';
 
-var React = require('react');
-var Router = require('react-router');
-var Link = Router.Link;
-
-var Home = React.createClass({
-	render: function() {
+class Home extends Component {
+	render() {
 		return (
 			<div className="jumbotron">
 				<h1>Service Management</h1>
@@ -14,6 +11,6 @@ var Home = React.createClass({
 			</div>
 		);
 	}
-});
+}
 
 module.exports = Home;

@@ -1,11 +1,9 @@
-"use strict";
+import React, { Component } from 'react';
+import Router, { Link } from 'react-router';
 
-var React = require('react');
-var Router = require('react-router');
-var Link = Router.Link;
 
-var Header = React.createClass({
-	render: function() {
+class Header extends Component {
+	render() {
 		return (
         <nav className="navbar navbar-default">
           <div className="container-fluid">
@@ -22,5 +20,6 @@ var Header = React.createClass({
         </nav>
 		);
 	}
-});
+}
+
 module.exports = Header;

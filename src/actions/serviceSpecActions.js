@@ -1,7 +1,6 @@
-"use strict";
+import Dispatcher from '../dispatcher/appDispatcher';
+import ActionTypes from '../constants/actionTypes';
 
-var Dispatcher = require('../dispatcher/appDispatcher');
-var ActionTypes = require('../constants/actionTypes');
 var ServiceSpecActions = {
 	createServiceSpec: function(serviceSpec) {
 		//var newServiceSpec = ServiceSpecApi.saveServiceSpec(serviceSpec);

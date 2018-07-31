@@ -27,7 +27,7 @@ var config = {
 }
 
 //Start a local development server
-gulp.task('connect', function() {
+gulp.task('connect', function () {
 	connect.server({
 		root: ['dist'],
 		port: config.port,
@@ -49,9 +49,8 @@ gulp.task('html', function() {
 
 gulp.task('js', function() {
 	browserify(config.paths.mainJs)
-		.transform(reactify)
+		.transform("babelify", {presets: ["es2015", "react"]}) 
 		.bundle()
-		.on('error', console.error.bind(console))
 		.pipe(source('bundle.js'))
 		.pipe(gulp.dest(config.paths.dist + '/scripts'))
 		.pipe(connect.reload());

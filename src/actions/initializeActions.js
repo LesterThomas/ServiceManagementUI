@@ -1,7 +1,6 @@
-"use strict";
+import Dispatcher from '../dispatcher/appDispatcher';
+import ActionTypes from '../constants/actionTypes';
 
-var Dispatcher = require('../dispatcher/appDispatcher');
-var ActionTypes = require('../constants/actionTypes');
 var InitializeActions = {
 	initApp: function() {
 		var defaultapiLocation = "http://localhost:8080/tmf-api/serviceCatalogManagement/v2/serviceSpecification";

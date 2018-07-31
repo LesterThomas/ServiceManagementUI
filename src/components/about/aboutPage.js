@@ -1,16 +1,12 @@
-"use strict";
+import React, { Component } from 'react';
 
-var React = require('react');
-
-var About = React.createClass({
-	statics: {
-	},
-	render: function () {
+class About extends Component {
+	render() {
 		return (
 			<div>
 				<h1>About</h1>
 				<p>
-					This application allows you to view the Service Catalog, place Service Orders and view the Service Inventory.
+					This application allows you to view Service Specifications from the Service Catalog (future editions will add placing Service Orders and viewing the Service Inventory).
 					It sits on top of the TM Forum Open-APIs for Service Catalogue, Service Order and Service Inventory.
 
 					See:
@@ -26,6 +22,6 @@ var About = React.createClass({
 			</div>
 		); 
 	}
-});
+}
 
 module.exports = About;
