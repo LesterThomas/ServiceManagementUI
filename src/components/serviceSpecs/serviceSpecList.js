@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
-import Router, { Link } from 'react-router';
-import ServiceSpecActions from '../../actions/serviceSpecActions';
-import toastr from 'toastr';
+import { Link } from 'react-router';
 
 class ServiceSpecList extends Component {
-
-	deleteServiceSpec(id, event) {
-		event.preventDefault();
-		ServiceSpecActions.deleteServiceSpec(id);
-		toastr.success('ServiceSpec Deleted');
-	}
 
 	render() {
 		var createServiceSpecRow = function(serviceSpec) {

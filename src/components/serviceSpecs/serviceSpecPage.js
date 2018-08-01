@@ -9,7 +9,7 @@ class ServiceSpecPage extends Component {
 		this.state = {
 			serviceSpecs: ServiceSpecStore.getAllServiceSpecs()
 		};
-		console.log('Initialising API Location', this.state);
+		console.log('Initialising ServiceSpecPage', this.state);
 	}
 
 	componentWillMount() {

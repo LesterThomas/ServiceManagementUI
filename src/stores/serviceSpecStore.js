@@ -31,45 +31,25 @@ var ServiceSpecStore = assign({}, EventEmitter.prototype, {
 	}
 });
 
+function getServiceSpec(inHref){
+	fetch(inHref) 
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(myJson) {
+			console.log('serviceSpecStore.getServiceSpec returned', myJson);
+			_serviceSpecs = myJson;
+			ServiceSpecStore.emitChange();
+		});
+}
+
 Dispatcher.register(function(action) {
 	switch(action.actionType) {
 		case ActionTypes.INITIALIZE:
-			fetch(action.initialData.apiLocation.href) 
-				.then(function(response) {
-					return response.json();
-				})
-				.then(function(myJson) {
-					console.log(myJson);
-					_serviceSpecs = myJson;
-					ServiceSpecStore.emitChange();
-				});
+			getServiceSpec(action.initialData.apiLocation.href);
 			break;
 		case ActionTypes.UPDATE_APILOCATION:
-			fetch(action.apiLocation.href) 
-				.then(function(response) {
-					return response.json();
-				})
-				.then(function(myJson) {
-					console.log(myJson);
-					_serviceSpecs = myJson;
-					ServiceSpecStore.emitChange();
-				});
-			break;
-		case ActionTypes.CREATE_SERVICESPEC:
-			_serviceSpecs.push(action.serviceSpec);
-			ServiceSpecStore.emitChange();
-			break;
-		case ActionTypes.UPDATE_SERVICESPEC:
-			var existingServiceSpec = _.find(_serviceSpecs, {id: action.serviceSpec.id});
-			var existingServiceSpecIndex = _.indexOf(_serviceSpecs, existingServiceSpec); 
-			_serviceSpecs.splice(existingServiceSpecIndex, 1, action.serviceSpec);
-			ServiceSpecStore.emitChange();
-			break;	
-		case ActionTypes.DELETE_SERVICESPEC:
-			_.remove(_serviceSpecs, function(serviceSpec) {
-				return action.id === serviceSpec.id;
-			});
-			ServiceSpecStore.emitChange();
+			getServiceSpec(action.apiLocation.href);
 			break;
 		default:
 			// no op

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ServiceSpecCharacteristicList from './serviceSpecCharacteristicList';
 
-class ServiceSpecForm extends Component {
+class ServiceSpecComponent extends Component {
 	
 	render() {
 		return (
@@ -32,12 +32,9 @@ class ServiceSpecForm extends Component {
 	}
 }
 
-ServiceSpecForm.propTypes = {
-	serviceSpec:	React.PropTypes.object.isRequired,
-	onSave:	React.PropTypes.func.isRequired,
-	onChange: React.PropTypes.func.isRequired,
-	errors: React.PropTypes.object
+ServiceSpecComponent.propTypes = {
+	serviceSpec:	React.PropTypes.object.isRequired
 };
 
 
-module.exports = ServiceSpecForm;
+module.exports = ServiceSpecComponent;
