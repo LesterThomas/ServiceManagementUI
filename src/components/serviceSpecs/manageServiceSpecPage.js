@@ -1,51 +1,46 @@
-"use strict";
+import React, { Component } from 'react';
+import Router from 'react-router';
+import ServiceSpecForm from './serviceSpecForm';
+import ServiceSpecActions from '../../actions/serviceSpecActions';
+import ServiceSpecStore from '../../stores/serviceSpecStore';
+import toastr from 'toastr';
 
-var React = require('react');
-var Router = require('react-router');
-var ServiceSpecForm = require('./serviceSpecForm');
-var ServiceSpecActions = require('../../actions/serviceSpecActions');
-var ServiceSpecStore = require('../../stores/serviceSpecStore');
-var toastr = require('toastr');
-
-var ManageServiceSpecPage = React.createClass({
-	mixins: [
-		Router.Navigation
-	],
-
-	statics: {},
-
-	getInitialState: function() {
-		return {
+class ManageServiceSpecPage extends Component {
+	
+	constructor(props) {
+		super(props);
+		this.state = {
 			serviceSpec: { id: '', firstName: '', lastName: '' },
 			errors: {},
 			dirty: false
 		};
-	},
+		console.log('Initialising API Location', this.state);
+	}
 
-	componentWillMount: function() {
+	componentWillMount() {
 		var serviceSpecId = this.props.params.id; //from the path '/serviceSpec:id'
 		if (serviceSpecId) {
 			this.setState({serviceSpec: ServiceSpecStore.getServiceSpecById(serviceSpecId) });
 		}
-	},
+	}
 
-	setServiceSpecState: function(event) {
+	setServiceSpecState(event) {
 		this.setState({dirty: true});
 		var field = event.target.name;
 		var value = event.target.value;
 		this.state.serviceSpec[field] = value;
 		return this.setState({serviceSpec: this.state.serviceSpec});
-	},
+	}
 
-	serviceSpecFormIsValid: function() {
+	serviceSpecFormIsValid() {
 		var formIsValid = true;
 		this.state.errors = {}; //clear any previous errors.
 
 		this.setState({errors: this.state.errors});
 		return formIsValid;
-	},
+	}
 
-	saveServiceSpec: function(event) {
+	saveServiceSpec(event) {
 		event.preventDefault();
 
 		if (!this.serviceSpecFormIsValid()) {
@@ -61,9 +56,9 @@ var ManageServiceSpecPage = React.createClass({
 		this.setState({dirty: false});
 		toastr.success('ServiceSpec saved.');
 		this.transitionTo('serviceSpecs');
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<ServiceSpecForm
 				serviceSpec={this.state.serviceSpec}
@@ -72,6 +67,6 @@ var ManageServiceSpecPage = React.createClass({
 				errors={this.state.errors} />
 		);
 	}
-});
+}
 
 module.exports = ManageServiceSpecPage;

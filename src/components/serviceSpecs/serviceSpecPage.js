@@ -1,33 +1,31 @@
-"use strict";
+import React, { Component } from 'react';
+import ServiceSpecList from './serviceSpecList';
+import ServiceSpecStore from '../../stores/serviceSpecStore';
 
-var React = require('react');
-var Router = require('react-router');
-var Link = require('react-router').Link;
-var ServiceSpecStore = require('../../stores/serviceSpecStore');
-var ServiceSpecActions = require('../../actions/serviceSpecActions');
-var ServiceSpecList = require('./serviceSpecList');
-
-var ServiceSpecPage = React.createClass({
-	getInitialState: function() {
-		return {
+class ServiceSpecPage extends Component {
+	
+	constructor(props) {
+		super(props);
+		this.state = {
 			serviceSpecs: ServiceSpecStore.getAllServiceSpecs()
 		};
-	},
+		console.log('Initialising API Location', this.state);
+	}
 
-	componentWillMount: function() {
+	componentWillMount() {
 		ServiceSpecStore.addChangeListener(this._onChange);
-	},
+	}
 
 	//Clean up when this component is unmounted
-	componentWillUnmount: function() {
+	componentWillUnmount() {
 		ServiceSpecStore.removeChangeListener(this._onChange);
-	},
+	}
 
-	_onChange: function() {
+	_onChange() {
 		this.setState({ serviceSpecs: ServiceSpecStore.getAllServiceSpecs() });
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div>
 				<h1>Service Specifications</h1>
@@ -35,6 +33,7 @@ var ServiceSpecPage = React.createClass({
 			</div>
 		);
 	}
-});
+}
+
 
 module.exports = ServiceSpecPage;

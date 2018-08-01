@@ -1,18 +1,9 @@
-"use strict";
+import React, { Component } from 'react';
+import ServiceSpecCharacteristicList from './serviceSpecCharacteristicList';
 
-var React = require('react');
-var Input = require('../common/textInput');
-var ServiceSpecCharacteristicList = require('./serviceSpecCharacteristicList');
-
-var ServiceSpecForm = React.createClass({
-	propTypes: {
-		serviceSpec:	React.PropTypes.object.isRequired,
-		onSave:	React.PropTypes.func.isRequired,
-		onChange: React.PropTypes.func.isRequired,
-		errors: React.PropTypes.object
-	},
-
-	render: function() {
+class ServiceSpecForm extends Component {
+	
+	render() {
 		return (
 			<div className=""> 
 				<br />
@@ -39,6 +30,14 @@ var ServiceSpecForm = React.createClass({
 			</div>
 		);
 	}
-});
+}
+
+ServiceSpecForm.propTypes = {
+	serviceSpec:	React.PropTypes.object.isRequired,
+	onSave:	React.PropTypes.func.isRequired,
+	onChange: React.PropTypes.func.isRequired,
+	errors: React.PropTypes.object
+};
+
 
 module.exports = ServiceSpecForm;

@@ -21,7 +21,7 @@ You can point the UI to any API Location:
 
 To run:
 
-1. install, node and grunt
+1. install node and gulp
 2. type `npm install` to install required dependancies.
 3. type `gulp` to run server.
 

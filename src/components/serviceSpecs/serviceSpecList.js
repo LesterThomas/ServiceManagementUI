@@ -1,23 +1,17 @@
-"use strict";
+import React, { Component } from 'react';
+import Router, { Link } from 'react-router';
+import ServiceSpecActions from '../../actions/serviceSpecActions';
+import toastr from 'toastr';
 
-var React = require('react');
-var Router = require('react-router');
-var Link = Router.Link;
-var ServiceSpecActions = require('../../actions/serviceSpecActions');
-var toastr = require('toastr');
+class ServiceSpecList extends Component {
 
-var ServiceSpecList = React.createClass({
-	propTypes: {
-		serviceSpecs: React.PropTypes.array.isRequired
-	},
-
-	deleteServiceSpec: function(id, event) {
+	deleteServiceSpec(id, event) {
 		event.preventDefault();
 		ServiceSpecActions.deleteServiceSpec(id);
 		toastr.success('ServiceSpec Deleted');
-	},
+	}
 
-	render: function() {
+	render() {
 		var createServiceSpecRow = function(serviceSpec) {
 			return (
 				<tr key={serviceSpec.id}>
@@ -44,6 +38,11 @@ var ServiceSpecList = React.createClass({
 			</div>
 		);
 	}
-});
+}
+
+ServiceSpecList.propTypes = {
+	serviceSpecs: React.PropTypes.array.isRequired
+};
+
 
 module.exports = ServiceSpecList;

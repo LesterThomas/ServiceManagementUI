@@ -1,9 +1,7 @@
-"use strict";
-
-var React = require('react');
-var Router = require('react-router');
-var routes = require('./routes');
-var InitializeActions = require('./actions/initializeActions');
+import React, { Component } from 'react';
+import Router from 'react-router';
+import routes from './routes';
+import InitializeActions from './actions/initializeActions';
 
 InitializeActions.initApp();
 

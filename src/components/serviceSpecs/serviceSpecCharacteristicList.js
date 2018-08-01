@@ -1,19 +1,10 @@
-"use strict";
-
-var React = require('react');
-var Router = require('react-router');
-var Link = Router.Link;
-var toastr = require('toastr');
-var ServiceSpecCharacteristicValueList = require('./serviceSpecCharacteristicValueList');
+import React, { Component } from 'react';
+import ServiceSpecCharacteristicValueList from './serviceSpecCharacteristicValueList';
 
 
-var ServiceSpecCharacteristicList = React.createClass({
-	propTypes: {
-		serviceSpecCharacteristic: React.PropTypes.array.isRequired
-	},
+class ServiceSpecCharacteristicList extends Component {
 
-
-	render: function() {
+	render() {
 		var createServiceSpecCharacteristicRow = function(serviceSpecCharacteristic) {
 			return (
 				<tr key={serviceSpecCharacteristic.name}>
@@ -49,6 +40,11 @@ var ServiceSpecCharacteristicList = React.createClass({
 			</div>
 		);
 	}
-});
+}
+
+ServiceSpecCharacteristicList.propTypes = {
+	serviceSpecCharacteristic: React.PropTypes.array.isRequired
+};
+
 
 module.exports = ServiceSpecCharacteristicList;

@@ -1,4 +1,3 @@
-import Router from 'react-router';
 import React, { Component } from 'react';
 import APILocationForm from './apiLocationForm';
 import apiLocationAction from '../../actions/apiLocationAction';
